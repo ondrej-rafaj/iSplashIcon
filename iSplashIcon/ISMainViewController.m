@@ -10,6 +10,9 @@
 #import "FTFilesystemIO.h"
 
 
+#define kISMainViewControllerUnusedIconAlpha			0.15f
+
+
 @implementation ISMainViewController
 
 @synthesize mainIcon = _mainIcon;
@@ -19,11 +22,13 @@
 @synthesize iPhoneIcon58 = _iPhoneIcon58;
 @synthesize iPhoneIcon50 = _iPhoneIcon50;
 @synthesize iPhoneIcon29 = _iPhoneIcon29;
-@synthesize androidIcon72 = _androidIcon72;
 @synthesize androidIcon48 = _androidIcon48;
 @synthesize androidIcon36 = _androidIcon36;
 @synthesize windowsIcon173 = _windowsIcon173;
 @synthesize windowsIcon62 = _windowsIcon62;
+@synthesize logoView = _logoView;
+@synthesize deviceType = _deviceType;
+@synthesize deviceTypeIndicator = _deviceTypeIndicator;
 
 
 #pragma mark Settings
@@ -58,7 +63,6 @@
 
 - (void)saveImage:(NSImage *)image WithName:(NSString *)name toFolder:(NSString *)folderName withPath:(NSString *)path {
 	NSString *folder = [path stringByAppendingPathComponent:folderName];
-	//folder = @"/Users/rafiki270/Downloads/____IKEA/";
 	path = [folder stringByAppendingPathComponent:name];
 	if (![FTFilesystemIO isFolder:folder]) {
 		[FTFilesystemIO makeFolderPath:folder];
@@ -69,29 +73,29 @@
 	NSBitmapImageRep *img = [[NSBitmapImageRep alloc] initWithData:sourceData];
 	NSData *data = [img representationUsingType:NSPNGFileType properties: nil];
 	[data writeToFile:path atomically: NO];
-	
-	NSLog(@"File path: %@", path);
 }
 
 - (void)saveFilesToPath:(NSString *)path {
-	[self saveImage:self.iPhoneIcon114.image WithName:@"Icon@2x.png" toFolder:@"iPhone" withPath:path];
-	[self saveImage:self.iPhoneIcon72.image WithName:@"Icon72.png" toFolder:@"iPhone" withPath:path];
-	[self saveImage:self.iPhoneIcon57.image WithName:@"Icon.png" toFolder:@"iPhone" withPath:path];
-	[self saveImage:self.iPhoneIcon58.image WithName:@"Icon58.png" toFolder:@"iPhone" withPath:path];
-	[self saveImage:self.iPhoneIcon50.image WithName:@"Icon50.png" toFolder:@"iPhone" withPath:path];
-	[self saveImage:self.iPhoneIcon29.image WithName:@"Icon29.png" toFolder:@"iPhone" withPath:path];
-	
-	[self saveImage:self.androidIcon72.image WithName:@"Icon72.png" toFolder:@"Android" withPath:path];
-	[self saveImage:self.androidIcon48.image WithName:@"Icon48.png" toFolder:@"Android" withPath:path];
-	[self saveImage:self.androidIcon36.image WithName:@"Icon36.png" toFolder:@"Android" withPath:path];
-	
-	[self saveImage:self.windowsIcon173.image WithName:@"Icon173.png" toFolder:@"Windows_7_Phone" withPath:path];
-	[self saveImage:self.windowsIcon62.image WithName:@"Icon62.png" toFolder:@"Windows_7_Phone" withPath:path];
+	if (self.deviceType == ISMainViewControllerDeviceTypeIOS) {
+		[self saveImage:self.iPhoneIcon114.image WithName:@"Icon@2x.png" toFolder:@"iOS" withPath:path];
+		[self saveImage:self.iPhoneIcon72.image WithName:@"Icon72.png" toFolder:@"iOS" withPath:path];
+		[self saveImage:self.iPhoneIcon57.image WithName:@"Icon.png" toFolder:@"iOS" withPath:path];
+		[self saveImage:self.iPhoneIcon58.image WithName:@"Icon58.png" toFolder:@"iOS" withPath:path];
+		[self saveImage:self.iPhoneIcon50.image WithName:@"Icon50.png" toFolder:@"iOS" withPath:path];
+		[self saveImage:self.iPhoneIcon29.image WithName:@"Icon29.png" toFolder:@"iOS" withPath:path];
+	}
+	else if (self.deviceType == ISMainViewControllerDeviceTypeAndroid) {
+		[self saveImage:self.iPhoneIcon72.image WithName:@"Icon72.png" toFolder:@"Android" withPath:path];
+		[self saveImage:self.androidIcon48.image WithName:@"Icon48.png" toFolder:@"Android" withPath:path];
+		[self saveImage:self.androidIcon36.image WithName:@"Icon36.png" toFolder:@"Android" withPath:path];
+	}
+	else if (self.deviceType == ISMainViewControllerDeviceTypeAndroid) {
+		[self saveImage:self.windowsIcon173.image WithName:@"Icon173.png" toFolder:@"Windows_7_Phone" withPath:path];
+		[self saveImage:self.windowsIcon62.image WithName:@"Icon62.png" toFolder:@"Windows_7_Phone" withPath:path];
+	}
 }
 
-- (void)resizeForAllPlatforms:(NSImage *)image {
-	[self.mainIcon setImage:image];
-	
+- (void)resizeForIOS:(NSImage *)image {
 	[self.iPhoneIcon114 setImage:[self resize:image toPixelSize:114]];
 	[self.iPhoneIcon72 setImage:[self resize:image toPixelSize:72]];
 	[self.iPhoneIcon57 setImage:[self resize:image toPixelSize:57]];
@@ -99,15 +103,79 @@
 	[self.iPhoneIcon50 setImage:[self resize:image toPixelSize:50]];
 	[self.iPhoneIcon29 setImage:[self resize:image toPixelSize:29]];
 	
-	[self.androidIcon72 setImage:self.iPhoneIcon72.image];
+	CGFloat alpha = 1.0f;
+	if (self.deviceType != ISMainViewControllerDeviceTypeIOS) {
+		alpha = kISMainViewControllerUnusedIconAlpha;
+	}
+	[self.iPhoneIcon114 setAlphaValue:alpha];
+	[self.iPhoneIcon72 setAlphaValue:alpha];
+	[self.iPhoneIcon57 setAlphaValue:alpha];
+	[self.iPhoneIcon58 setAlphaValue:alpha];
+	[self.iPhoneIcon50 setAlphaValue:alpha];
+	[self.iPhoneIcon29 setAlphaValue:alpha];
+}
+
+- (void)resizeForAndroid:(NSImage *)image {
+	[self.iPhoneIcon72 setImage:[self resize:image toPixelSize:72]];
 	[self.androidIcon48 setImage:[self resize:image toPixelSize:48]];
 	[self.androidIcon36 setImage:[self resize:image toPixelSize:36]];
 	
+	CGFloat alpha = 1.0f;
+	if (self.deviceType != ISMainViewControllerDeviceTypeAndroid) {
+		alpha = kISMainViewControllerUnusedIconAlpha;
+	}
+	if (self.deviceType != ISMainViewControllerDeviceTypeIOS) [self.iPhoneIcon72 setAlphaValue:alpha];
+	[self.androidIcon48 setAlphaValue:alpha];
+	[self.androidIcon36 setAlphaValue:alpha];
+}
+
+- (void)resizeForWindows:(NSImage *)image {
 	[self.windowsIcon173 setImage:[self resize:image toPixelSize:173]];
 	[self.windowsIcon62 setImage:[self resize:image toPixelSize:62]];
+	
+	CGFloat alpha = 1.0f;
+	if (self.deviceType != ISMainViewControllerDeviceTypeWindows) {
+		alpha = kISMainViewControllerUnusedIconAlpha;
+	}
+	[self.windowsIcon173 setAlphaValue:alpha];
+	[self.windowsIcon62 setAlphaValue:alpha];
+}
+
+- (void)resizeForAllPlatforms:(NSImage *)image {
+	[self.mainIcon setImage:image];
+	
+	[self resizeForIOS:image];
+	[self resizeForAndroid:image];
+	[self resizeForWindows:image];
+}
+
+#pragma mark Animations
+
+- (void)moveDeviceTypeIndicaterToButtonPosition:(NSView *)view {
+	CGRect r = self.deviceTypeIndicator.frame;
+	r.origin.x = ((view.frame.origin.x + (view.frame.size.width / 2)) - (r.size.width / 2));
+	[[self.deviceTypeIndicator animator] setFrame:r];
 }
 
 #pragma mark Button action methods
+
+- (IBAction)didClickAppleButton:(NSButton *)sender {
+	self.deviceType = ISMainViewControllerDeviceTypeIOS;
+	[self resizeForAllPlatforms:[NSImage imageNamed:@"test_icon.png"]];
+	[self moveDeviceTypeIndicaterToButtonPosition:sender];
+}
+
+- (IBAction)didClickAndroidButton:(NSButton *)sender {
+	self.deviceType = ISMainViewControllerDeviceTypeAndroid;
+	[self resizeForAllPlatforms:[NSImage imageNamed:@"test_icon.png"]];
+	[self moveDeviceTypeIndicaterToButtonPosition:sender];
+}
+
+- (IBAction)didClickWindowsButton:(NSButton *)sender {
+	self.deviceType = ISMainViewControllerDeviceTypeWindows;
+	[self resizeForAllPlatforms:[NSImage imageNamed:@"test_icon.png"]];
+	[self moveDeviceTypeIndicaterToButtonPosition:sender];
+}
 
 - (IBAction)didClickSaveButton:(id)sender {
 	[self resizeForAllPlatforms:[NSImage imageNamed:@"test_icon.png"]];
@@ -131,6 +199,12 @@
 	NSString *directory = [openPanel directoryURL].filePathURL.path;
 	
 	[self saveFilesToPath:directory];
+}
+
+- (IBAction)didClickResetButton:(id)sender {
+	self.deviceType = ISMainViewControllerDeviceTypeNone;
+	[self resizeForAllPlatforms:[NSImage imageNamed:@"not-used.png"]];
+	[self moveDeviceTypeIndicaterToButtonPosition:self.logoView];
 }
 
 

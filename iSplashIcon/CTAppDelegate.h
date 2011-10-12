@@ -12,4 +12,5 @@
 
 @property (strong) IBOutlet NSWindow *window;
 
+
 @end

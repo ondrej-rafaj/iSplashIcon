@@ -8,6 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+
+typedef enum {
+	
+	ISMainViewControllerDeviceTypeNone,
+	ISMainViewControllerDeviceTypeIOS,
+	ISMainViewControllerDeviceTypeAndroid,
+	ISMainViewControllerDeviceTypeWindows
+	
+} ISMainViewControllerDeviceType;
+
+
 @interface ISMainViewController : NSObject
 
 @property (nonatomic, strong) IBOutlet NSImageView *mainIcon;
@@ -19,15 +30,20 @@
 @property (nonatomic, strong) IBOutlet NSImageView *iPhoneIcon50;
 @property (nonatomic, strong) IBOutlet NSImageView *iPhoneIcon29;
 
-@property (nonatomic, strong) IBOutlet NSImageView *androidIcon72;
 @property (nonatomic, strong) IBOutlet NSImageView *androidIcon48;
 @property (nonatomic, strong) IBOutlet NSImageView *androidIcon36;
 
 @property (nonatomic, strong) IBOutlet NSImageView *windowsIcon173;
 @property (nonatomic, strong) IBOutlet NSImageView *windowsIcon62;
 
+@property (nonatomic, strong) IBOutlet NSImageView *logoView;
+
+@property (nonatomic) ISMainViewControllerDeviceType deviceType;
+@property (nonatomic, strong) IBOutlet NSImageView *deviceTypeIndicator;
+
 
 - (IBAction)didClickSaveButton:(id)sender;
+- (IBAction)didClickResetButton:(id)sender;
 
 
 @end
