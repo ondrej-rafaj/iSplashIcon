@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C7846171439ED0400DC804C /* test_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C7846161439ED0400DC804C /* test_icon.png */; };
 		4C78461A143AFB8800DC804C /* FTFilesystemIO.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C784619143AFB8800DC804C /* FTFilesystemIO.m */; };
 		4CA226C21445C27C00C9B0AA /* not-used.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CA226C11445C27C00C9B0AA /* not-used.png */; };
 		4CA226C51445C73000C9B0AA /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CA226C41445C73000C9B0AA /* logo.png */; };
@@ -16,18 +15,18 @@
 		4CA226CC1445D63B00C9B0AA /* bcg-button-android.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CA226C91445D63B00C9B0AA /* bcg-button-android.png */; };
 		4CA226CD1445D63B00C9B0AA /* bcg-button-ios.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CA226CA1445D63B00C9B0AA /* bcg-button-ios.png */; };
 		4CA226CF1445D64200C9B0AA /* bcg-button-windows.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CA226CE1445D64200C9B0AA /* bcg-button-windows.png */; };
+		4CA226D41445DCD900C9B0AA /* FTDroppableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA226D31445DCD900C9B0AA /* FTDroppableImageView.m */; };
+		4CA226D61445F35D00C9B0AA /* icon-dnd.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CA226D51445F35D00C9B0AA /* icon-dnd.png */; };
 		4CE77F261437312E00A5AEDA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE77F251437312E00A5AEDA /* Cocoa.framework */; };
 		4CE77F301437312E00A5AEDA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4CE77F2E1437312E00A5AEDA /* InfoPlist.strings */; };
 		4CE77F321437312E00A5AEDA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE77F311437312E00A5AEDA /* main.m */; };
 		4CE77F361437312E00A5AEDA /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4CE77F341437312E00A5AEDA /* Credits.rtf */; };
 		4CE77F391437312E00A5AEDA /* CTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE77F381437312E00A5AEDA /* CTAppDelegate.m */; };
 		4CE77F3C1437312F00A5AEDA /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CE77F3A1437312F00A5AEDA /* MainMenu.xib */; };
-		4CE77F4A1439ACF900A5AEDA /* ISMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE77F491439ACF900A5AEDA /* ISMainViewController.m */; };
 		4CE77F4C1439AD2900A5AEDA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE77F4B1439AD2900A5AEDA /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4C7846161439ED0400DC804C /* test_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_icon.png; sourceTree = "<group>"; };
 		4C784618143AFB8800DC804C /* FTFilesystemIO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTFilesystemIO.h; sourceTree = "<group>"; };
 		4C784619143AFB8800DC804C /* FTFilesystemIO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTFilesystemIO.m; sourceTree = "<group>"; };
 		4CA226C11445C27C00C9B0AA /* not-used.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "not-used.png"; sourceTree = "<group>"; };
@@ -37,6 +36,9 @@
 		4CA226C91445D63B00C9B0AA /* bcg-button-android.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bcg-button-android.png"; sourceTree = "<group>"; };
 		4CA226CA1445D63B00C9B0AA /* bcg-button-ios.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bcg-button-ios.png"; sourceTree = "<group>"; };
 		4CA226CE1445D64200C9B0AA /* bcg-button-windows.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bcg-button-windows.png"; sourceTree = "<group>"; };
+		4CA226D21445DCD900C9B0AA /* FTDroppableImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTDroppableImageView.h; sourceTree = "<group>"; };
+		4CA226D31445DCD900C9B0AA /* FTDroppableImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTDroppableImageView.m; sourceTree = "<group>"; };
+		4CA226D51445F35D00C9B0AA /* icon-dnd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-dnd.png"; sourceTree = "<group>"; };
 		4CE77F211437312E00A5AEDA /* iSplashIcon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSplashIcon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CE77F251437312E00A5AEDA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		4CE77F281437312E00A5AEDA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -50,8 +52,6 @@
 		4CE77F371437312E00A5AEDA /* CTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTAppDelegate.h; sourceTree = "<group>"; };
 		4CE77F381437312E00A5AEDA /* CTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTAppDelegate.m; sourceTree = "<group>"; };
 		4CE77F3B1437312F00A5AEDA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		4CE77F481439ACF900A5AEDA /* ISMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISMainViewController.h; sourceTree = "<group>"; };
-		4CE77F491439ACF900A5AEDA /* ISMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISMainViewController.m; sourceTree = "<group>"; };
 		4CE77F4B1439AD2900A5AEDA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -75,6 +75,23 @@
 				4C784619143AFB8800DC804C /* FTFilesystemIO.m */,
 			);
 			name = Libs;
+			sourceTree = "<group>";
+		};
+		4CA226D01445DBD700C9B0AA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4CA226D11445DBE700C9B0AA /* Drag & Drop image view */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		4CA226D11445DBE700C9B0AA /* Drag & Drop image view */ = {
+			isa = PBXGroup;
+			children = (
+				4CA226D21445DCD900C9B0AA /* FTDroppableImageView.h */,
+				4CA226D31445DCD900C9B0AA /* FTDroppableImageView.m */,
+			);
+			name = "Drag & Drop image view";
 			sourceTree = "<group>";
 		};
 		4CE77F161437312E00A5AEDA = {
@@ -119,7 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				4C7846111439EBB900DC804C /* Libs */,
-				4CE77F471439ACD200A5AEDA /* Main View */,
+				4CA226D01445DBD700C9B0AA /* Views */,
 				4CE77F371437312E00A5AEDA /* CTAppDelegate.h */,
 				4CE77F381437312E00A5AEDA /* CTAppDelegate.m */,
 				4CE77F3A1437312F00A5AEDA /* MainMenu.xib */,
@@ -130,6 +147,7 @@
 		4CE77F2C1437312E00A5AEDA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4CA226D51445F35D00C9B0AA /* icon-dnd.png */,
 				4CA226C81445D63B00C9B0AA /* bcg-app.png */,
 				4CA226CE1445D64200C9B0AA /* bcg-button-windows.png */,
 				4CA226C91445D63B00C9B0AA /* bcg-button-android.png */,
@@ -137,7 +155,6 @@
 				4CA226C61445CABE00C9B0AA /* top-menu-arrow.png */,
 				4CA226C41445C73000C9B0AA /* logo.png */,
 				4CA226C11445C27C00C9B0AA /* not-used.png */,
-				4C7846161439ED0400DC804C /* test_icon.png */,
 				4CE77F2D1437312E00A5AEDA /* iSplashIcon-Info.plist */,
 				4CE77F2E1437312E00A5AEDA /* InfoPlist.strings */,
 				4CE77F311437312E00A5AEDA /* main.m */,
@@ -146,15 +163,6 @@
 			);
 			name = "Supporting Files";
 			path = iSplashIcon;
-			sourceTree = "<group>";
-		};
-		4CE77F471439ACD200A5AEDA /* Main View */ = {
-			isa = PBXGroup;
-			children = (
-				4CE77F481439ACF900A5AEDA /* ISMainViewController.h */,
-				4CE77F491439ACF900A5AEDA /* ISMainViewController.m */,
-			);
-			name = "Main View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,6 +192,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Fuerte International - http://www.fuerteint.com ";
 			};
 			buildConfigurationList = 4CE77F1B1437312E00A5AEDA /* Build configuration list for PBXProject "iSplashIcon" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -210,7 +219,6 @@
 				4CE77F301437312E00A5AEDA /* InfoPlist.strings in Resources */,
 				4CE77F361437312E00A5AEDA /* Credits.rtf in Resources */,
 				4CE77F3C1437312F00A5AEDA /* MainMenu.xib in Resources */,
-				4C7846171439ED0400DC804C /* test_icon.png in Resources */,
 				4CA226C21445C27C00C9B0AA /* not-used.png in Resources */,
 				4CA226C51445C73000C9B0AA /* logo.png in Resources */,
 				4CA226C71445CABE00C9B0AA /* top-menu-arrow.png in Resources */,
@@ -218,6 +226,7 @@
 				4CA226CC1445D63B00C9B0AA /* bcg-button-android.png in Resources */,
 				4CA226CD1445D63B00C9B0AA /* bcg-button-ios.png in Resources */,
 				4CA226CF1445D64200C9B0AA /* bcg-button-windows.png in Resources */,
+				4CA226D61445F35D00C9B0AA /* icon-dnd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,8 +239,8 @@
 			files = (
 				4CE77F321437312E00A5AEDA /* main.m in Sources */,
 				4CE77F391437312E00A5AEDA /* CTAppDelegate.m in Sources */,
-				4CE77F4A1439ACF900A5AEDA /* ISMainViewController.m in Sources */,
 				4C78461A143AFB8800DC804C /* FTFilesystemIO.m in Sources */,
+				4CA226D41445DCD900C9B0AA /* FTDroppableImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
