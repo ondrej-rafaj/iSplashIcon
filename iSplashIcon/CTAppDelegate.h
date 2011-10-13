@@ -55,9 +55,13 @@ typedef enum {
 @property (nonatomic, strong) IBOutlet NSButton *androidButton;
 @property (nonatomic, strong) IBOutlet NSButton *windowsButton;
 
+@property (nonatomic, strong) IBOutlet NSButton *tickBasicIcons;
 
+// Button actions
 - (IBAction)didClickSaveButton:(id)sender;
 - (IBAction)didClickResetButton:(id)sender;
+
+- (IBAction)tickChangedOnBasicIcons:(NSButton *)sender;
 
 - (void)reset;
 

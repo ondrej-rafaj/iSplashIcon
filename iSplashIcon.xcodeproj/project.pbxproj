@@ -17,6 +17,7 @@
 		4CA226CF1445D64200C9B0AA /* bcg-button-windows.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CA226CE1445D64200C9B0AA /* bcg-button-windows.png */; };
 		4CA226D41445DCD900C9B0AA /* FTDroppableImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CA226D31445DCD900C9B0AA /* FTDroppableImageView.m */; };
 		4CA226D61445F35D00C9B0AA /* icon-dnd.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CA226D51445F35D00C9B0AA /* icon-dnd.png */; };
+		4CB2A2DE14463A2400BEBF7F /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CB2A2DD14463A2400BEBF7F /* Icon.png */; };
 		4CE77F261437312E00A5AEDA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CE77F251437312E00A5AEDA /* Cocoa.framework */; };
 		4CE77F301437312E00A5AEDA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4CE77F2E1437312E00A5AEDA /* InfoPlist.strings */; };
 		4CE77F321437312E00A5AEDA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CE77F311437312E00A5AEDA /* main.m */; };
@@ -39,6 +40,7 @@
 		4CA226D21445DCD900C9B0AA /* FTDroppableImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTDroppableImageView.h; sourceTree = "<group>"; };
 		4CA226D31445DCD900C9B0AA /* FTDroppableImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTDroppableImageView.m; sourceTree = "<group>"; };
 		4CA226D51445F35D00C9B0AA /* icon-dnd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-dnd.png"; sourceTree = "<group>"; };
+		4CB2A2DD14463A2400BEBF7F /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		4CE77F211437312E00A5AEDA /* iSplashIcon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iSplashIcon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CE77F251437312E00A5AEDA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		4CE77F281437312E00A5AEDA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -97,6 +99,7 @@
 		4CE77F161437312E00A5AEDA = {
 			isa = PBXGroup;
 			children = (
+				4CB2A2DD14463A2400BEBF7F /* Icon.png */,
 				4CE77F2B1437312E00A5AEDA /* iSplashIcon */,
 				4CE77F2C1437312E00A5AEDA /* Supporting Files */,
 				4CE77F241437312E00A5AEDA /* Frameworks */,
@@ -227,6 +230,7 @@
 				4CA226CD1445D63B00C9B0AA /* bcg-button-ios.png in Resources */,
 				4CA226CF1445D64200C9B0AA /* bcg-button-windows.png in Resources */,
 				4CA226D61445F35D00C9B0AA /* icon-dnd.png in Resources */,
+				4CB2A2DE14463A2400BEBF7F /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -3,12 +3,12 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1070</int>
 		<string key="IBDocument.SystemVersion">11B26</string>
-		<string key="IBDocument.InterfaceBuilderVersion">1923</string>
+		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
 		<string key="IBDocument.AppKitVersion">1138</string>
 		<string key="IBDocument.HIToolboxVersion">566.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
-			<string key="NS.object.0">1923</string>
+			<string key="NS.object.0">1938</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>NSMenuItem</string>
@@ -807,7 +807,6 @@
 							<string key="NSFrame">{{585, 16}, {204, 43}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:2269</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="642132356">
@@ -869,7 +868,7 @@
 								<reference key="NSSupport" ref="612542590"/>
 								<string key="NSCellIdentifier">_NS:717</string>
 								<reference key="NSControlView" ref="907285464"/>
-								<int key="NSButtonFlags">1211912703</int>
+								<int key="NSButtonFlags">1211945471</int>
 								<int key="NSButtonFlags2">2</int>
 								<object class="NSCustomResource" key="NSNormalImage" id="66030753">
 									<string key="NSClassName">NSImage</string>
@@ -900,7 +899,7 @@
 								<reference key="NSSupport" ref="612542590"/>
 								<string key="NSCellIdentifier">_NS:717</string>
 								<reference key="NSControlView" ref="499178578"/>
-								<int key="NSButtonFlags">1211912703</int>
+								<int key="NSButtonFlags">1211945471</int>
 								<int key="NSButtonFlags2">2</int>
 								<reference key="NSNormalImage" ref="66030753"/>
 								<reference key="NSAlternateImage" ref="123812653"/>
@@ -926,7 +925,7 @@
 								<reference key="NSSupport" ref="612542590"/>
 								<string key="NSCellIdentifier">_NS:717</string>
 								<reference key="NSControlView" ref="93803404"/>
-								<int key="NSButtonFlags">1211912703</int>
+								<int key="NSButtonFlags">1211945471</int>
 								<int key="NSButtonFlags2">2</int>
 								<reference key="NSNormalImage" ref="66030753"/>
 								<reference key="NSAlternateImage" ref="123812653"/>
@@ -952,7 +951,7 @@
 								<reference key="NSSupport" ref="612542590"/>
 								<string key="NSCellIdentifier">_NS:717</string>
 								<reference key="NSControlView" ref="871755162"/>
-								<int key="NSButtonFlags">1211912703</int>
+								<int key="NSButtonFlags">1211945471</int>
 								<int key="NSButtonFlags2">2</int>
 								<reference key="NSNormalImage" ref="66030753"/>
 								<reference key="NSAlternateImage" ref="123812653"/>
@@ -1404,6 +1403,14 @@
 						<reference key="destination" ref="89607726"/>
 					</object>
 					<int key="connectionID">686</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">tickChangedOnBasicIcons:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="93803404"/>
+					</object>
+					<int key="connectionID">688</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -2178,7 +2185,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">686</int>
+			<int key="maxID">688</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2188,6 +2195,7 @@
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="didClickResetButton:">id</string>
 						<string key="didClickSaveButton:">id</string>
+						<string key="tickChangedOnBasicIcons:">NSButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="didClickResetButton:">
@@ -2197,6 +2205,10 @@
 						<object class="IBActionInfo" key="didClickSaveButton:">
 							<string key="name">didClickSaveButton:</string>
 							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="tickChangedOnBasicIcons:">
+							<string key="name">tickChangedOnBasicIcons:</string>
+							<string key="candidateClassName">NSButton</string>
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
@@ -2215,6 +2227,7 @@
 						<string key="mainIcon">FTDroppableImageView</string>
 						<string key="resetButton">NSButton</string>
 						<string key="saveButton">NSButton</string>
+						<string key="tickBasicIcons">NSButton</string>
 						<string key="window">NSWindow</string>
 						<string key="windowsButton">NSButton</string>
 						<string key="windowsIcon173">NSImageView</string>
@@ -2279,6 +2292,10 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="saveButton">
 							<string key="name">saveButton</string>
+							<string key="candidateClassName">NSButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="tickBasicIcons">
+							<string key="name">tickBasicIcons</string>
 							<string key="candidateClassName">NSButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="window">

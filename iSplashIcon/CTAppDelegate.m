@@ -10,7 +10,44 @@
 #import "FTFilesystemIO.h"
 
 
-#define kISMainViewControllerUnusedIconAlpha			0.15f
+#define kISMainViewControllerUnusedIconAlpha								0.15f
+#define kISMainViewControllerTickBasicIcons									@"ISMainViewControllerTickBasicIcons"
+
+
+static void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWidth, float ovalHeight) {
+    float fw, fh;
+    if (ovalWidth == 0 || ovalHeight == 0) {
+        CGContextAddRect(context, rect);
+        return;
+    }
+    CGContextSaveGState(context);
+    CGContextTranslateCTM (context, CGRectGetMinX(rect), CGRectGetMinY(rect));
+    CGContextScaleCTM (context, ovalWidth, ovalHeight);
+    fw = CGRectGetWidth (rect) / ovalWidth;
+    fh = CGRectGetHeight (rect) / ovalHeight;
+    CGContextMoveToPoint(context, fw, fh/2);
+    CGContextAddArcToPoint(context, fw, fh, fw/2, fh, 1);
+    CGContextAddArcToPoint(context, 0, fh, 0, fh/2, 1);
+    CGContextAddArcToPoint(context, 0, 0, fw/2, 0, 1);
+    CGContextAddArcToPoint(context, fw, 0, fw, fh/2, 1);
+    CGContextClosePath(context);
+    CGContextRestoreGState(context);
+}
+
+static CGImageRef CGImageCreateWithNSImage(NSImage *image) {
+    NSSize imageSize = [image size];
+	
+    CGContextRef bitmapContext = CGBitmapContextCreate(NULL, imageSize.width, imageSize.height, 8, 0, [[NSColorSpace genericRGBColorSpace] CGColorSpace], kCGBitmapByteOrder32Host|kCGImageAlphaPremultipliedFirst);
+	
+    [NSGraphicsContext saveGraphicsState];
+    [NSGraphicsContext setCurrentContext:[NSGraphicsContext graphicsContextWithGraphicsPort:bitmapContext flipped:NO]];
+    [image drawInRect:NSMakeRect(0, 0, imageSize.width, imageSize.height) fromRect:NSZeroRect operation:NSCompositeCopy fraction:1.0];
+    [NSGraphicsContext restoreGraphicsState];
+	
+    CGImageRef cgImage = CGBitmapContextCreateImage(bitmapContext);
+    CGContextRelease(bitmapContext);
+    return cgImage;
+}
 
 
 @implementation CTAppDelegate
@@ -35,15 +72,37 @@
 @synthesize appleButton;
 @synthesize androidButton;
 @synthesize windowsButton;
+@synthesize tickBasicIcons;
+
+
+#pragma mark Persistent data
+
+- (void)saveInt:(NSInteger)value forKey:(NSString *)key {
+	[[NSUserDefaults standardUserDefaults] setInteger:value forKey:key];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSInteger)getIntForKey:(NSString *)key {
+	return [[NSUserDefaults standardUserDefaults] integerForKey:key];
+}
+
+- (void)saveBool:(BOOL)value forKey:(NSString *)key {
+	[[NSUserDefaults standardUserDefaults] setBool:value forKey:key];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSInteger)getBoolForKey:(NSString *)key {
+	return [[NSUserDefaults standardUserDefaults] boolForKey:key];
+}
 
 #pragma mark Buttons handling
 
 - (void)enableButtons:(BOOL)enabled {
 	[self.saveButton setEnabled:enabled];
 	[self.resetButton setEnabled:enabled];
-	[self.appleButton setEnabled:enabled];
-	[self.androidButton setEnabled:enabled];
-	[self.windowsButton setEnabled:enabled];
+//	[self.appleButton setEnabled:enabled];
+//	[self.androidButton setEnabled:enabled];
+//	[self.windowsButton setEnabled:enabled];
 }
 
 #pragma mark App delegate methods
@@ -120,9 +179,11 @@
 		[self saveImage:self.iPhoneIcon114.image WithName:@"Icon@2x.png" toFolder:@"iOS" withPath:path];
 		[self saveImage:self.iPhoneIcon72.image WithName:@"Icon72.png" toFolder:@"iOS" withPath:path];
 		[self saveImage:self.iPhoneIcon57.image WithName:@"Icon.png" toFolder:@"iOS" withPath:path];
-		[self saveImage:self.iPhoneIcon58.image WithName:@"Icon58.png" toFolder:@"iOS" withPath:path];
-		[self saveImage:self.iPhoneIcon50.image WithName:@"Icon50.png" toFolder:@"iOS" withPath:path];
-		[self saveImage:self.iPhoneIcon29.image WithName:@"Icon29.png" toFolder:@"iOS" withPath:path];
+		if (self.tickBasicIcons.state == NSOffState) { 
+			[self saveImage:self.iPhoneIcon58.image WithName:@"Icon58.png" toFolder:@"iOS" withPath:path];
+			[self saveImage:self.iPhoneIcon50.image WithName:@"Icon50.png" toFolder:@"iOS" withPath:path];
+			[self saveImage:self.iPhoneIcon29.image WithName:@"Icon29.png" toFolder:@"iOS" withPath:path];
+		}
 	}
 	else if (self.deviceType == ISMainViewControllerDeviceTypeAndroid) {
 		[self saveImage:self.iPhoneIcon72.image WithName:@"Icon72.png" toFolder:@"Android" withPath:path];
@@ -152,6 +213,7 @@
 	[self.iPhoneIcon114 setAlphaValue:alpha];
 	[self.iPhoneIcon72 setAlphaValue:alpha];
 	[self.iPhoneIcon57 setAlphaValue:alpha];
+	if (self.tickBasicIcons.state == NSOnState) alpha = kISMainViewControllerUnusedIconAlpha;
 	[self.iPhoneIcon58 setAlphaValue:alpha];
 	[self.iPhoneIcon50 setAlphaValue:alpha];
 	[self.iPhoneIcon29 setAlphaValue:alpha];
@@ -197,11 +259,18 @@
 
 - (void)reset {
 	imagePresent = NO;
-	//self.deviceType = ISMainViewControllerDeviceTypeNone;
+	self.deviceType = ISMainViewControllerDeviceTypeNone;
 	[self resizeForAllPlatforms:[NSImage imageNamed:@"not-used.png"]];
 	[self moveDeviceTypeIndicaterToButtonPosition:self.logoView];
 	[self enableButtons:NO];
 	[self.mainIcon setImage:[NSImage imageNamed:@"icon-dnd.png"]];
+	
+	// Tick boxes
+	[self.tickBasicIcons setEnabled:NO];
+	
+	// Restore tick values
+	BOOL is = [self getBoolForKey:kISMainViewControllerTickBasicIcons];
+	[self.tickBasicIcons setState:(is ? NSOnState : NSOffState)];
 }
 
 #pragma mark Button action methods
@@ -210,18 +279,27 @@
 	self.deviceType = ISMainViewControllerDeviceTypeIOS;
 	[self resizeForAllPlatforms:self.mainIcon.image];
 	[self moveDeviceTypeIndicaterToButtonPosition:sender];
+	
+	// Tick boxes
+	[self.tickBasicIcons setEnabled:YES];
 }
 
 - (IBAction)didClickAndroidButton:(NSButton *)sender {
 	self.deviceType = ISMainViewControllerDeviceTypeAndroid;
 	[self resizeForAllPlatforms:self.mainIcon.image];
 	[self moveDeviceTypeIndicaterToButtonPosition:sender];
+	
+	// Tick boxes
+	[self.tickBasicIcons setEnabled:NO];
 }
 
 - (IBAction)didClickWindowsButton:(NSButton *)sender {
 	self.deviceType = ISMainViewControllerDeviceTypeWindows;
 	[self resizeForAllPlatforms:self.mainIcon.image];
 	[self moveDeviceTypeIndicaterToButtonPosition:sender];
+	
+	// Tick boxes
+	[self.tickBasicIcons setEnabled:NO];
 }
 
 - (IBAction)didClickSaveButton:(id)sender {
@@ -248,6 +326,41 @@
 	[self reset];
 }
 
+- (void)tickChangedOnBasicIcons:(NSButton *)sender {
+	[self resizeForAllPlatforms:self.mainIcon.image];
+	[self saveBool:(self.tickBasicIcons.state == NSOnState) forKey:kISMainViewControllerTickBasicIcons];
+}
+
+#pragma mark Adding photo effects
+
+- (NSImage *)roundedCornersImageFromImage:(NSImage *)img withCornerWidth:(CGFloat)cornerWidth andCornerHeight:(CGFloat)cornerHeight {
+	NSImage * newImage = nil;
+	if( nil != img) {
+		int w = img.size.width;
+		int h = img.size.height;
+		
+		CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+		CGContextRef context = CGBitmapContextCreate(NULL, w, h, 8, 4 * w, colorSpace, kCGImageAlphaPremultipliedFirst);
+		
+		CGContextBeginPath(context);
+		CGRect rect = CGRectMake(0, 0, img.size.width, img.size.height);
+		addRoundedRectToPath(context, rect, cornerWidth, cornerHeight);
+		CGContextClosePath(context);
+		CGContextClip(context);
+		
+		CGContextDrawImage(context, CGRectMake(0, 0, w, h), CGImageCreateWithNSImage(img));
+		
+		CGImageRef imageMasked = CGBitmapContextCreateImage(context);
+		CGContextRelease(context);
+		CGColorSpaceRelease(colorSpace);
+		
+		NSData *pixelData = (__bridge_transfer NSData *)CGDataProviderCopyData(CGImageGetDataProvider(imageMasked));
+		newImage = [[NSImage alloc] initWithData:pixelData];
+		CGImageRelease(imageMasked);
+	}
+    return newImage;
+}
+
 #pragma mark Droppable delegate methods
 
 - (void)selectActualTab {
@@ -266,6 +379,7 @@
 
 - (void)droppableImageView:(FTDroppableImageView *)droppableView didLoadImage:(NSImage *)image {
 	imagePresent = NO;
+	//image = [self roundedCornersImageFromImage:image withCornerWidth:20 andCornerHeight:10];
 	[self resizeForAllPlatforms:image];
 	[self enableButtons:YES];
 	[NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(selectActualTab) userInfo:nil repeats:NO];
